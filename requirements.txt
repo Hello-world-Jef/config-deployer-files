@@ -1,0 +1,5 @@
+datetime
+python-dotenv
+PyYaml
+minimalmodbus
+pyserial

@@ -1,0 +1,41 @@
+##############################################################
+version: '3'
+services:
+  ems:
+    container_name: data-logger
+    image: 774107482273.dkr.ecr.ap-south-1.amazonaws.com/ems-co-rpi4-debianbullseye-64-legacy-lite:latest
+    privileged: true
+    devices:
+      - /dev/ttyUSB0
+      - /dev/gpiomem
+    network_mode: host
+    dns:
+      - 8.8.8.8
+    logging:
+      options:
+        max-size: 1000m
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "sh", "-c", "ping -c 1 8.8.8.8 && curl --fail https://prod.motware.cloud"]
+      interval: 60s
+      timeout: 10s
+      retries: 2
+    volumes:
+      - /root/.ssh/known_hosts:/root/.ssh/known_hosts
+      - /sys:/sys
+      - /run/udev:/run/udev
+
+  config-deployer:
+    container_name: config-deployer
+    image: config_image:latest
+    network_mode: host
+    privileged: true  # If needed for specific device access
+    devices:
+      - "/dev/ttyAMA0:/dev/ttyAMA0"  # Map /dev/ttyAMA0 from host to container
+    volumes:
+      - /root/.ssh/known_hosts:/root/.ssh/known_hosts
+      - /sys:/sys
+      - /run/udev:/run/udev
+    restart: "no"
+##########################################################################################
+

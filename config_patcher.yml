@@ -1,0 +1,60 @@
+slaves:
+  - communication:
+      port: '/dev/ttyAMA0'
+      baudrate: 9600
+      parity: 'E'
+      stopbits: 1
+    sensors:
+      - id: 0
+        slave_address: 9
+        registers:
+          - address: 3019
+            value: 59
+            bytes: 1   
+            function_code: 6
+            data_type: 3
+            endian: 0 
+          - address: 3020
+            value: 65
+            bytes: 1   
+            function_code: 6
+            data_type: 3
+            endian: 0
+          - address: 3022
+            value: 78
+            bytes: 1   
+            function_code: 6
+            data_type: 3
+            endian: 0 
+          - address: 3023
+            value: 99
+            bytes: 1   
+            function_code: 6
+            data_type: 3
+            endian: 0
+          - address: 3024
+            value: 10
+            bytes: 1   
+            function_code: 6
+            data_type: 3
+            endian: 0 
+          - address: 3025
+            value: 11
+            bytes: 1   
+            function_code: 6
+            data_type: 3
+            endian: 0
+          - address: 3026
+            value: 9
+            bytes: 1   
+            function_code: 6
+            data_type: 3
+            endian: 0 
+          - address: 3027
+            value: 101
+            bytes: 1   
+            function_code: 6
+            data_type: 3
+            endian: 0
+           
+
